@@ -1,0 +1,358 @@
+<process-dir height="507" id="tibco.bw.sample.binding.rest.bookstore.Invoke_Client" name="tibco.bw.sample.binding.rest.bookstore.Invoke_Client" type="process" width="872" x="140" y="20">
+    <ProcessInfo createdBy="nshah" createdOn="Mon Oct 06 14:58:15 IST 2014" description="" modifiedBy="" modifiedOn="" modifiers="public" productVersion="1.2.0 V19 2014-10-04" scalable="true" singleton="true" stateless="false" type="IT"/>
+    <link-dir id="adfbec25-b7c0-43db-8d12-f7db90ac0394" label="" linkType="SUCCESS" name="TimerToSleep" points="[[161,95],[210,95]]" source="6b91a9dc-54b5-4376-bd86-00324b3ad224" target="cea12d37-3d1e-498c-99af-2a862565f590"/>
+    <activity-dir height="48" id="6b91a9dc-54b5-4376-bd86-00324b3ad224" name="Timer" type="bw.generalactivities.timer" width="48" x="112" y="71">
+        <BWActivity activityTypeID="bw.generalactivities.timer" version="6.0.0.001">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Timer"/>
+                    <value endTime="2014-10-06T11:28:43.700+0200" intervalUnit="Second" runOnce="true" startTime="2014-10-06T11:28:43.700+0200" timeInterval="1" type="generalactivities:Timer"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="7168950c-8188-440b-acc5-466d727a3090" label="" linkType="SUCCESS" name="SleepToReadFile" points="[[259,95],[311,95]]" source="cea12d37-3d1e-498c-99af-2a862565f590" target="040f5331-a3cc-4c89-98a7-ef484591aae0"/>
+    <activity-dir height="48" id="cea12d37-3d1e-498c-99af-2a862565f590" name="Sleep" type="bw.generalactivities.sleep" width="48" x="210" y="71">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://tns.tibco.com/bw/activity/sleep/xsd&quot; version=&quot;2.0&quot;&gt;&lt;xsl:template name=&quot;Sleep-input&quot; match=&quot;/&quot;&gt;&lt;tns:SleepInputSchema&gt;&lt;IntervalInMillisec&gt;&lt;xsl:value-of select=&quot;3000&quot;/&gt;&lt;/IntervalInMillisec&gt;&lt;/tns:SleepInputSchema&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://tns.tibco.com/bw/activity/sleep/xsd&quot; version=&quot;2.0&quot;&gt;&lt;xsl:template name=&quot;Sleep-input&quot; match=&quot;/&quot;&gt;&lt;tns:SleepInputSchema&gt;&lt;IntervalInMillisec&gt;&lt;xsl:value-of select=&quot;3000&quot;/&gt;&lt;/IntervalInMillisec&gt;&lt;/tns:SleepInputSchema&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.generalactivities.sleep">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Sleep"/>
+                    <value type="generalactivities:Sleep"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="09f1adb7-e599-47eb-8e69-edbc48abbee7" label="" linkType="SUCCESS" name="ReadFileToInvokeRESTAPI" points="[[360,95],[411,95]]" source="040f5331-a3cc-4c89-98a7-ef484591aae0" target="31018a9e-44e8-409e-9785-8300bafb7b05"/>
+    <activity-dir height="48" id="040f5331-a3cc-4c89-98a7-ef484591aae0" name="ReadFile" type="bw.file.read" width="48" x="311" y="71">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file/v2&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;Input_File&quot;/&gt;&lt;xsl:template name=&quot;ReadFile-input&quot; match=&quot;/&quot;&gt;&lt;tns:ReadActivityInputClass&gt;&lt;fileName&gt;&lt;xsl:value-of select=&quot;concat(bw:getSystemProperty(&amp;quot;BW_HOME&amp;quot;), $Input_File)&quot;/&gt;&lt;/fileName&gt;&lt;/tns:ReadActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file/v2&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;Input_File&quot;/&gt;&lt;xsl:template name=&quot;ReadFile-input&quot; match=&quot;/&quot;&gt;&lt;tns:ReadActivityInputClass&gt;&lt;fileName&gt;&lt;xsl:value-of select=&quot;concat(bw:getSystemProperty(&amp;quot;BW_HOME&amp;quot;), $Input_File)&quot;/&gt;&lt;/fileName&gt;&lt;/tns:ReadActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.read">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//ReadFile"/>
+                    <value readAs="text" type="file:ReadFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="8d213f2c-c430-4d9c-ab73-1fbb907b0262" label="" linkType="SUCCESS" name="InvokeRESTAPIToParseJSON" points="[[460,95],[507,95]]" source="31018a9e-44e8-409e-9785-8300bafb7b05" target="5129d314-ac8c-4918-819f-cd4f44246663"/>
+    <activity-dir height="48" id="31018a9e-44e8-409e-9785-8300bafb7b05" name="POST_Books" type="bw.restjson.Rest" width="48" x="411" y="71">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+31018a9e-44e8-409e-9785-8300bafb7b05+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ReadFile&quot;/&gt;&lt;xsl:template name=&quot;POST_Books-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;MessageBody&gt;&lt;asciiContent&gt;&lt;xsl:value-of select=&quot;$ReadFile/fileContent/textContent&quot;/&gt;&lt;/asciiContent&gt;&lt;/MessageBody&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+31018a9e-44e8-409e-9785-8300bafb7b05+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ReadFile&quot;/&gt;&lt;xsl:template name=&quot;POST_Books-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;MessageBody&gt;&lt;asciiContent&gt;&lt;xsl:value-of select=&quot;$ReadFile/fileContent/textContent&quot;/&gt;&lt;/asciiContent&gt;&lt;/MessageBody&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.Rest">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//RestInvokeActivity"/>
+                    <value httpClientSR="httpClientResource" httpMethod="POST" requestContentType="JSON" resourcePath="/books" responseAcceptType="JSON" type="restjson:RestInvokeActivity"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="88f755ec-e0f6-409f-981e-d7736bc219f7" label="" linkType="SUCCESS" name="ParseJSONToRenderJSON" points="[[556,95],[599,95]]" source="5129d314-ac8c-4918-819f-cd4f44246663" target="fdf59db0-c682-4746-878d-370149d037b8"/>
+    <activity-dir height="48" id="5129d314-ac8c-4918-819f-cd4f44246663" name="ParseJSON" type="bw.restjson.JsonParser" width="48" x="507" y="71">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+5129d314-ac8c-4918-819f-cd4f44246663+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;POST_Books&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$POST_Books/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+5129d314-ac8c-4918-819f-cd4f44246663+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;POST_Books&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$POST_Books/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonParser">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonParser"/>
+                    <value schemaType="Xsd" type="restjson:JsonParser">
+                        <outputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Books;XSDElementDeclaration=1"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="5af43432-b05a-43dd-a6b1-c9e4f38a9374" label="" linkType="SUCCESS" name="RenderJSONToWriteFile" points="[[648,95],[699,95]]" source="fdf59db0-c682-4746-878d-370149d037b8" target="a2313d40-3e01-4531-b097-e6478549979e"/>
+    <activity-dir height="48" id="fdf59db0-c682-4746-878d-370149d037b8" name="RenderJSON" type="bw.restjson.JsonRender" width="48" x="599" y="71">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/Books&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON-input&quot; match=&quot;/&quot;&gt;&lt;tns:Books&gt;&lt;xsl:copy-of select=&quot;$ParseJSON/tns:Book&quot;/&gt;&lt;/tns:Books&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/Books&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON-input&quot; match=&quot;/&quot;&gt;&lt;tns:Books&gt;&lt;xsl:copy-of select=&quot;$ParseJSON/tns:Book&quot;/&gt;&lt;/tns:Books&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonRender">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonRender"/>
+                    <value schemaType="Xsd" type="restjson:JsonRender">
+                        <inputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Books;XSDElementDeclaration=1"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="dbd9814c-496e-45cc-a46d-1581c4f04da5" label="" linkType="SUCCESS" name="WriteFileToInvokeRESTAPI1" points="[[723,120],[723,169]]" source="a2313d40-3e01-4531-b097-e6478549979e" target="0c227a76-6fa8-4086-8bf9-35de69876658"/>
+    <activity-dir height="48" id="a2313d40-3e01-4531-b097-e6478549979e" name="WriteFile" type="bw.file.write" width="48" x="699" y="71">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON&quot;/&gt;&lt;xsl:template name=&quot;WriteFile-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;***********Output of InvokeRESTAPI Activity***********&amp;quot;, &amp;quot;&amp;#xA;&amp;quot;, &amp;quot;POST Books-------&gt;&amp;quot;,$RenderJSON/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON&quot;/&gt;&lt;xsl:template name=&quot;WriteFile-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;***********Output of InvokeRESTAPI Activity***********&amp;quot;, &amp;quot;&amp;#xA;&amp;quot;, &amp;quot;POST Books-------&gt;&amp;quot;,$RenderJSON/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.write">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//WriteFile"/>
+                    <value compressFile="None" createMissingDirectories="true" encoding="text" type="file:WriteFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="ac5dc7da-6b0a-4256-a698-1689113f1e9f" label="" linkType="SUCCESS" name="InvokeRESTAPI1ToParseJSON1" points="[[699,193],[640,193]]" source="0c227a76-6fa8-4086-8bf9-35de69876658" target="76b2fc00-ea22-4576-a908-55385d16b170"/>
+    <activity-dir height="48" id="0c227a76-6fa8-4086-8bf9-35de69876658" name="GET_Books" type="bw.restjson.Rest" width="48" x="699" y="169">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+0c227a76-6fa8-4086-8bf9-35de69876658+RestInvokeInput&quot; version=&quot;2.0&quot;&gt; &lt;xsl:template name=&quot;InvokeRESTAPI1-input&quot; match=&quot;/&quot;&gt; &lt;tns:RestActivityInput/&gt; &lt;/xsl:template&gt; &lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+0c227a76-6fa8-4086-8bf9-35de69876658+RestInvokeInput&quot; version=&quot;2.0&quot;&gt; &lt;xsl:template name=&quot;InvokeRESTAPI1-input&quot; match=&quot;/&quot;&gt; &lt;tns:RestActivityInput/&gt; &lt;/xsl:template&gt; &lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.Rest">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//RestInvokeActivity"/>
+                    <value httpClientSR="httpClientResource" requestContentType="JSON" resourcePath="/books" responseAcceptType="JSON" type="restjson:RestInvokeActivity"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="3a7780ed-7ea0-492d-80ab-f56feb3d9f15" label="" linkType="SUCCESS" name="ParseJSON1ToRenderJSON1" points="[[591,193],[544,193]]" source="76b2fc00-ea22-4576-a908-55385d16b170" target="de96c7d1-4ad1-4808-8cac-b6829ef90e25"/>
+    <activity-dir height="48" id="76b2fc00-ea22-4576-a908-55385d16b170" name="ParseJSON1" type="bw.restjson.JsonParser" width="48" x="591" y="169">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+76b2fc00-ea22-4576-a908-55385d16b170+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;GET_Books&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON1-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$GET_Books/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+76b2fc00-ea22-4576-a908-55385d16b170+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;GET_Books&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON1-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$GET_Books/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonParser">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonParser"/>
+                    <value schemaType="Xsd" type="restjson:JsonParser">
+                        <outputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Books;XSDElementDeclaration=1"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="c65131bd-3b1a-45f1-b329-04ed95eaab29" label="" linkType="SUCCESS" name="RenderJSON1ToWriteFile1" points="[[495,193],[452,193]]" source="de96c7d1-4ad1-4808-8cac-b6829ef90e25" target="888575b9-2b26-45d9-a346-0fff32eccb80"/>
+    <activity-dir height="48" id="de96c7d1-4ad1-4808-8cac-b6829ef90e25" name="RenderJSON1" type="bw.restjson.JsonRender" width="48" x="495" y="169">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/Books&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON1&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON1-input&quot; match=&quot;/&quot;&gt;&lt;tns:Books&gt;&lt;xsl:copy-of select=&quot;$ParseJSON1/tns:Book&quot;/&gt;&lt;/tns:Books&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/Books&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON1&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON1-input&quot; match=&quot;/&quot;&gt;&lt;tns:Books&gt;&lt;xsl:copy-of select=&quot;$ParseJSON1/tns:Book&quot;/&gt;&lt;/tns:Books&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonRender">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonRender"/>
+                    <value schemaType="Xsd" type="restjson:JsonRender">
+                        <inputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Books;XSDElementDeclaration=1"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="576da7a8-e594-4f43-8eb5-8768a254fc1d" label="" linkType="SUCCESS" name="WriteFile1ToInvokeRESTAPI2" points="[[403,193],[360,193]]" source="888575b9-2b26-45d9-a346-0fff32eccb80" target="921dd70b-b309-47ce-9fd4-182303e54dd3"/>
+    <activity-dir height="48" id="888575b9-2b26-45d9-a346-0fff32eccb80" name="WriteFile1" type="bw.file.write" width="48" x="403" y="169">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON1&quot;/&gt;&lt;xsl:template name=&quot;WriteFile1-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;GET Books-------&gt;&amp;quot;,$RenderJSON1/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON1&quot;/&gt;&lt;xsl:template name=&quot;WriteFile1-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;GET Books-------&gt;&amp;quot;,$RenderJSON1/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.write">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//WriteFile"/>
+                    <value append="true" compressFile="None" createMissingDirectories="true" encoding="text" type="file:WriteFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="2cf7065e-37a6-478a-bafc-f0603f1d60d5" label="" linkType="SUCCESS" name="InvokeRESTAPI2ToParseJSON2" points="[[311,193],[250,193]]" source="921dd70b-b309-47ce-9fd4-182303e54dd3" target="0b9a5db2-510f-48e2-b866-4352a37ca8b4"/>
+    <activity-dir height="48" id="921dd70b-b309-47ce-9fd4-182303e54dd3" name="GET_Book_By_ISBN" type="bw.restjson.Rest" width="48" x="311" y="169">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+921dd70b-b309-47ce-9fd4-182303e54dd3+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:template name=&quot;GET_Book_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+921dd70b-b309-47ce-9fd4-182303e54dd3+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:template name=&quot;GET_Book_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.Rest">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//RestInvokeActivity"/>
+                    <value httpClientSR="httpClientResource" requestContentType="JSON" resourcePath="/book/{ISBN}" responseAcceptType="JSON" type="restjson:RestInvokeActivity"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="d49c601b-014b-4fb3-b21a-8e567e397971" label="" linkType="SUCCESS" name="ParseJSON2ToRenderJSON2" points="[[201,193],[165,193]]" source="0b9a5db2-510f-48e2-b866-4352a37ca8b4" target="67c14a79-08f2-4c2e-af58-d27f66c0cb20"/>
+    <activity-dir height="48" id="0b9a5db2-510f-48e2-b866-4352a37ca8b4" name="ParseJSON2" type="bw.restjson.JsonParser" width="48" x="201" y="169">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+0b9a5db2-510f-48e2-b866-4352a37ca8b4+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;GET_Book_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON2-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$GET_Book_By_ISBN/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+0b9a5db2-510f-48e2-b866-4352a37ca8b4+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;GET_Book_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON2-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$GET_Book_By_ISBN/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonParser">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonParser"/>
+                    <value schemaType="Xsd" type="restjson:JsonParser">
+                        <outputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Book;XSDElementDeclaration"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="009a8a1e-d86b-4056-a3fe-97210e8f8ee8" label="" linkType="SUCCESS" name="RenderJSON2ToWriteFile2" points="[[140,218],[140,271]]" source="67c14a79-08f2-4c2e-af58-d27f66c0cb20" target="6c9b1bda-0d33-41e1-a31d-7e469af46784"/>
+    <activity-dir height="48" id="67c14a79-08f2-4c2e-af58-d27f66c0cb20" name="RenderJSON2" type="bw.restjson.JsonRender" width="48" x="116" y="169">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON2&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON2-input&quot; match=&quot;/&quot;&gt;&lt;xsl:copy-of select=&quot;$ParseJSON2&quot;/&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON2&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON2-input&quot; match=&quot;/&quot;&gt;&lt;xsl:copy-of select=&quot;$ParseJSON2&quot;/&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonRender">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonRender"/>
+                    <value schemaType="Xsd" type="restjson:JsonRender">
+                        <inputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Book;XSDElementDeclaration"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="7ab93b48-f6bf-4273-944b-ddf63b2f1f4c" label="" linkType="SUCCESS" name="WriteFile2ToReadFile1" points="[[165,295],[236,295]]" source="6c9b1bda-0d33-41e1-a31d-7e469af46784" target="1228f174-0e98-4d1f-b8af-68586232af49"/>
+    <activity-dir height="48" id="6c9b1bda-0d33-41e1-a31d-7e469af46784" name="WriteFile2" type="bw.file.write" width="48" x="116" y="271">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON2&quot;/&gt;&lt;xsl:template name=&quot;WriteFile2-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;GET Book By ISBN-------&gt;&amp;quot;,$RenderJSON2/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON2&quot;/&gt;&lt;xsl:template name=&quot;WriteFile2-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;GET Book By ISBN-------&gt;&amp;quot;,$RenderJSON2/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.write">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//WriteFile"/>
+                    <value append="true" compressFile="None" createMissingDirectories="true" encoding="text" type="file:WriteFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="e4683906-e75b-499d-8ae7-d2882de5c868" label="" linkType="SUCCESS" name="ReadFile1ToInvokeRESTAPI3" points="[[285,295],[358,295]]" source="1228f174-0e98-4d1f-b8af-68586232af49" target="82a108f8-42d9-4b88-94c7-a2be9ea12b1f"/>
+    <activity-dir height="48" id="1228f174-0e98-4d1f-b8af-68586232af49" name="ReadFile1" type="bw.file.read" width="48" x="236" y="271">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file/v2&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;Input_File_1&quot;/&gt;&lt;xsl:template name=&quot;ReadFile1-input&quot; match=&quot;/&quot;&gt;&lt;tns:ReadActivityInputClass&gt;&lt;fileName&gt;&lt;xsl:value-of select=&quot;concat(bw:getSystemProperty(&amp;quot;BW_HOME&amp;quot;), $Input_File_1)&quot;/&gt;&lt;/fileName&gt;&lt;/tns:ReadActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file/v2&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;Input_File_1&quot;/&gt;&lt;xsl:template name=&quot;ReadFile1-input&quot; match=&quot;/&quot;&gt;&lt;tns:ReadActivityInputClass&gt;&lt;fileName&gt;&lt;xsl:value-of select=&quot;concat(bw:getSystemProperty(&amp;quot;BW_HOME&amp;quot;), $Input_File_1)&quot;/&gt;&lt;/fileName&gt;&lt;/tns:ReadActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.read">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//ReadFile"/>
+                    <value readAs="text" type="file:ReadFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="30e5da0d-7700-494a-9167-3f3ae5ed34f7" label="" linkType="SUCCESS" name="InvokeRESTAPI3ToParseJSON3" points="[[407,295],[479,295]]" source="82a108f8-42d9-4b88-94c7-a2be9ea12b1f" target="40cf99cf-521f-4b66-a790-9d910b826f2a"/>
+    <activity-dir height="48" id="82a108f8-42d9-4b88-94c7-a2be9ea12b1f" name="PUT_Book_By_ISBN" type="bw.restjson.Rest" width="48" x="358" y="271">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+82a108f8-42d9-4b88-94c7-a2be9ea12b1f+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:param name=&quot;ReadFile1&quot;/&gt;&lt;xsl:template name=&quot;PUT_Book_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;MessageBody&gt;&lt;asciiContent&gt;&lt;xsl:value-of select=&quot;$ReadFile1/fileContent/textContent&quot;/&gt;&lt;/asciiContent&gt;&lt;/MessageBody&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+82a108f8-42d9-4b88-94c7-a2be9ea12b1f+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:param name=&quot;ReadFile1&quot;/&gt;&lt;xsl:template name=&quot;PUT_Book_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;MessageBody&gt;&lt;asciiContent&gt;&lt;xsl:value-of select=&quot;$ReadFile1/fileContent/textContent&quot;/&gt;&lt;/asciiContent&gt;&lt;/MessageBody&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.Rest">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//RestInvokeActivity"/>
+                    <value httpClientSR="httpClientResource" httpMethod="PUT" requestContentType="JSON" resourcePath="/book/{ISBN}" responseAcceptType="JSON" type="restjson:RestInvokeActivity"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="93a7701f-5eb2-4b4b-a1c2-c5e07704b168" label="" linkType="SUCCESS" name="ParseJSON3ToRenderJSON3" points="[[528,295],[607,295]]" source="40cf99cf-521f-4b66-a790-9d910b826f2a" target="cb9741ee-35ed-4922-b50b-27a0a4b97d67"/>
+    <activity-dir height="48" id="40cf99cf-521f-4b66-a790-9d910b826f2a" name="ParseJSON3" type="bw.restjson.JsonParser" width="48" x="479" y="271">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+40cf99cf-521f-4b66-a790-9d910b826f2a+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;PUT_Book_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON3-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$PUT_Book_By_ISBN/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+40cf99cf-521f-4b66-a790-9d910b826f2a+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;PUT_Book_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON3-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$PUT_Book_By_ISBN/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonParser">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonParser"/>
+                    <value schemaType="Xsd" type="restjson:JsonParser">
+                        <outputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Book;XSDElementDeclaration"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="33f02482-8fc4-415b-a576-b28f03bd7a4d" label="" linkType="SUCCESS" name="RenderJSON3ToWriteFile3" points="[[656,295],[723,295]]" source="cb9741ee-35ed-4922-b50b-27a0a4b97d67" target="c14e41ca-0fca-423d-b07e-e61060ad6d7c"/>
+    <activity-dir height="48" id="cb9741ee-35ed-4922-b50b-27a0a4b97d67" name="RenderJSON3" type="bw.restjson.JsonRender" width="48" x="607" y="271">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON3&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON3-input&quot; match=&quot;/&quot;&gt;&lt;xsl:copy-of select=&quot;$ParseJSON3&quot;/&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON3&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON3-input&quot; match=&quot;/&quot;&gt;&lt;xsl:copy-of select=&quot;$ParseJSON3&quot;/&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonRender">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonRender"/>
+                    <value schemaType="Xsd" type="restjson:JsonRender">
+                        <inputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Books.xsd#//Book;XSDElementDeclaration"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="9045b77b-5a6b-4abd-b8c4-94afe3d339e0" label="" linkType="SUCCESS" name="WriteFile3ToInvokeRESTAPI4" points="[[747,320],[747,367]]" source="c14e41ca-0fca-423d-b07e-e61060ad6d7c" target="e5d3571f-38d0-4eb9-bccc-a0e200d5ceb6"/>
+    <activity-dir height="48" id="c14e41ca-0fca-423d-b07e-e61060ad6d7c" name="WriteFile3" type="bw.file.write" width="48" x="723" y="271">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON3&quot;/&gt;&lt;xsl:template name=&quot;WriteFile3-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;PUT Book By ISBN-------&gt;&amp;quot;,$RenderJSON3/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON3&quot;/&gt;&lt;xsl:template name=&quot;WriteFile3-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;PUT Book By ISBN-------&gt;&amp;quot;,$RenderJSON3/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.write">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//WriteFile"/>
+                    <value append="true" compressFile="None" createMissingDirectories="true" encoding="text" type="file:WriteFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="8dce34cf-c0e2-48e6-a795-4e40b102c95d" label="" linkType="SUCCESS" name="InvokeRESTAPI4ToWriteFile4" points="[[723,391],[668,391]]" source="e5d3571f-38d0-4eb9-bccc-a0e200d5ceb6" target="4e1c998f-710b-4fba-9aec-30c7eb3b40fa"/>
+    <activity-dir height="48" id="e5d3571f-38d0-4eb9-bccc-a0e200d5ceb6" name="DELETE_Book_By_ISBN" type="bw.restjson.Rest" width="48" x="723" y="367">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+e5d3571f-38d0-4eb9-bccc-a0e200d5ceb6+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:template name=&quot;DELETE_Book_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+e5d3571f-38d0-4eb9-bccc-a0e200d5ceb6+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:template name=&quot;DELETE_Book_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.Rest">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//RestInvokeActivity"/>
+                    <value httpClientSR="httpClientResource" httpMethod="DELETE" requestContentType="JSON" resourcePath="/book/{ISBN}" responseAcceptType="JSON" type="restjson:RestInvokeActivity"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="e4c8238d-c2bd-4714-b527-98bf97c7a2b8" label="" linkType="SUCCESS" name="WriteFile4ToInvokeRESTAPI5" points="[[619,391],[531,391]]" source="4e1c998f-710b-4fba-9aec-30c7eb3b40fa" target="45d5dda2-e7bd-468d-a70a-47075807e60a"/>
+    <activity-dir height="48" id="4e1c998f-710b-4fba-9aec-30c7eb3b40fa" name="WriteFile4" type="bw.file.write" width="48" x="619" y="367">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;DELETE_Book_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;WriteFile4-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;DELETE Book By ISBN--------&gt;&amp;quot;,$DELETE_Book_By_ISBN/MessageBody/asciiContent,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;DELETE_Book_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;WriteFile4-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;DELETE Book By ISBN--------&gt;&amp;quot;,$DELETE_Book_By_ISBN/MessageBody/asciiContent,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.write">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//WriteFile"/>
+                    <value append="true" compressFile="None" createMissingDirectories="true" encoding="text" type="file:WriteFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="7239559b-29f7-4879-9121-a9ea2d30a59c" label="" linkType="SUCCESS" name="InvokeRESTAPI5ToParseJSON4" points="[[482,391],[432,391]]" source="45d5dda2-e7bd-468d-a70a-47075807e60a" target="2655fed6-2026-4955-8f7b-e27dddee7f7a"/>
+    <activity-dir height="48" id="45d5dda2-e7bd-468d-a70a-47075807e60a" name="GET_Events_By_ISBN" type="bw.restjson.Rest" width="48" x="482" y="367">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+45d5dda2-e7bd-468d-a70a-47075807e60a+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:template name=&quot;GET_Events_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/restinvoke+45d5dda2-e7bd-468d-a70a-47075807e60a+RestInvokeInput&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ISBN&quot;/&gt;&lt;xsl:template name=&quot;GET_Events_By_ISBN-input&quot; match=&quot;/&quot;&gt;&lt;tns:RestActivityInput&gt;&lt;tns:PathParameters&gt;&lt;ISBN&gt;&lt;xsl:value-of select=&quot;$ISBN&quot;/&gt;&lt;/ISBN&gt;&lt;/tns:PathParameters&gt;&lt;/tns:RestActivityInput&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.Rest">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//RestInvokeActivity"/>
+                    <value httpClientSR="httpClientResource" requestContentType="JSON" resourcePath="/book/{ISBN}/events" responseAcceptType="JSON" type="restjson:RestInvokeActivity"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="d5475239-4f73-47ec-b9f7-179959c512d6" label="" linkType="SUCCESS" name="ParseJSON4ToRenderJSON4" points="[[383,391],[326,391]]" source="2655fed6-2026-4955-8f7b-e27dddee7f7a" target="7784a116-6098-4234-b63f-15651aa9c68a"/>
+    <activity-dir height="48" id="2655fed6-2026-4955-8f7b-e27dddee7f7a" name="ParseJSON4" type="bw.restjson.JsonParser" width="48" x="383" y="367">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+2655fed6-2026-4955-8f7b-e27dddee7f7a+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;GET_Events_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON4-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$GET_Events_By_ISBN/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;activity.jsonParser.input+2655fed6-2026-4955-8f7b-e27dddee7f7a+ActivityInputType&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;GET_Events_By_ISBN&quot;/&gt;&lt;xsl:template name=&quot;ParseJSON4-input&quot; match=&quot;/&quot;&gt;&lt;tns:ActivityInputClass&gt;&lt;jsonString&gt;&lt;xsl:value-of select=&quot;$GET_Events_By_ISBN/MessageBody/asciiContent&quot;/&gt;&lt;/jsonString&gt;&lt;/tns:ActivityInputClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonParser">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonParser"/>
+                    <value schemaType="Xsd" type="restjson:JsonParser">
+                        <outputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Events.xsd#//Events;XSDElementDeclaration=1"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <link-dir id="f5211105-010e-4a76-8833-918daf1806b2" label="" linkType="SUCCESS" name="RenderJSON4ToWriteFile5" points="[[277,391],[193,391]]" source="7784a116-6098-4234-b63f-15651aa9c68a" target="2162a7de-0a09-48c5-9b6f-7573ce56c604"/>
+    <activity-dir height="48" id="7784a116-6098-4234-b63f-15651aa9c68a" name="RenderJSON4" type="bw.restjson.JsonRender" width="48" x="277" y="367">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/Events&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON4&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON4-input&quot; match=&quot;/&quot;&gt;&lt;tns:Events&gt;&lt;xsl:copy-of select=&quot;$ParseJSON4/tns:Event&quot;/&gt;&lt;/tns:Events&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.org/Events&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;ParseJSON4&quot;/&gt;&lt;xsl:template name=&quot;RenderJSON4-input&quot; match=&quot;/&quot;&gt;&lt;tns:Events&gt;&lt;xsl:copy-of select=&quot;$ParseJSON4/tns:Event&quot;/&gt;&lt;/tns:Events&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.restjson.JsonRender">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/restjson#//JsonRender"/>
+                    <value schemaType="Xsd" type="restjson:JsonRender">
+                        <inputEditorElement href="platform:/resource/tibco.bw.sample.binding.rest.BookStore/Schemas/Events.xsd#//Events;XSDElementDeclaration=1"/>
+                    </value>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <activity-dir height="48" id="2162a7de-0a09-48c5-9b6f-7573ce56c604" name="WriteFile5" type="bw.file.write" width="48" x="144" y="367">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON4&quot;/&gt;&lt;xsl:template name=&quot;WriteFile5-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;GET Events By ISBN----&gt;&amp;quot;,$RenderJSON4/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/file&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;&gt;&lt;xsl:param name=&quot;RenderJSON4&quot;/&gt;&lt;xsl:template name=&quot;WriteFile5-input&quot; match=&quot;/&quot;&gt;&lt;tns:WriteActivityInputTextClass&gt;&lt;textContent&gt;&lt;xsl:value-of select=&quot;concat(&amp;quot;GET Events By ISBN----&gt;&amp;quot;,$RenderJSON4/jsonString,&amp;quot;**************************************************************&amp;quot;)&quot;/&gt;&lt;/textContent&gt;&lt;addLineSeparator&gt;&lt;xsl:value-of select=&quot;xsd:boolean(1)&quot;/&gt;&lt;/addLineSeparator&gt;&lt;/tns:WriteActivityInputTextClass&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.file.write">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/file#//WriteFile"/>
+                    <value append="true" compressFile="None" createMissingDirectories="true" encoding="text" type="file:WriteFile"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+</process-dir>
